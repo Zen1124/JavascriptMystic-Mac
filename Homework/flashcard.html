@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Helvetica;
+        text-align: center;
+      }
+      #card {
+        width: 500px;
+        padding: 120px 0;
+        margin: 50px auto;
+        border: 5px solid darkseagreen;
+        border-radius: 5px;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="card"><p id="question"></p></div>
+    <input type="text" id="answer"/>
+    <button onclick="answer();">Answer</button>
+
+    <script>
+      var question = document.getElementById('question');
+      question.textContent = "What is the captial of Ecuador?";
+      var answer;
+      var score = 0;
+      var test = test + 1;
+
+      function answer() {
+        var answer = document.getElementById('answer');
+        if (answer.value == "Quito") {
+          question.textContent = "Correct!";
+          score++;
+          console.log(score);
+        } else {
+          question.textContent = "Nope Seems Like You got It Wrong :(";
+          score++;
+        }
+      }
+    </script>
+  </body>
+</html>
