@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Guessing Game</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      var start = document.getElementById("start");
+      var end = document.getElementById("end");
+      var random;
+      function play() {
+        document.getElementById("start").style.display.innerHTML = "hidden";
+        document.getElementById("end").style.display.innerHTML = "hidden";
+        var random = math.floor((math.random() * end.value) + start.value);
+        document.write(random);
+        console.log(random);
+      }
+
+
+    </script>
+    <input id="start" type="number" placeholder="Input the starting number of a range of numbers"></br></br>
+    <input id="end" type="number" placeholder="Input the ending number of a range of numbers"></br></br>
+    <button onclick="play();" id="play">Play The Game</button>
+
+
+  </body>
+</html>

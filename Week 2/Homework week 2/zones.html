@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Zone Game</title>
+  </head>
+  <body>
+    <script>
+    console.log("test");
+    function house() {
+      var start = prompt("You walk to the entrance of a small abandoned house. There are 2 rooms, west and east.");
+
+      console.log("test 2");
+
+      if (start == "west") {
+
+        var action1 = prompt("A killer is in the room! To your right there is a knife and to your left is a gun.");
+
+                if (action1 == "knife") {
+
+                alert("You stab the killer and leave the house");
+
+              } else if (action1 == "gun") {
+
+                alert("You get the gun but you miss all your shots. A pain hits your stomach and you start bleeding...You die! ");
+
+              } else {
+
+                alert("I cant read that");
+
+                  house();
+              };
+      } else if (start == "east") {
+            function east() {
+                var action2 = prompt("You see a stack of cash and a body. You could take the cash or check the body.");
+
+                if (action2 == "cash") {
+                  alert("You steal the cash and start walking through the hallway...");
+                  alert("A figure jumps you and you die!");
+                } else if (action2 == "body") {
+                  alert("You learn that there is a killer in the room...");
+                  alert("You hear something running at you...");
+                  alert("You're dead");
+                }
+            }
+            east();
+      } else {
+            alert("I cant read that");
+            east();
+      }
+    }
+
+
+
+      // } else if (x == "east") {
+    //   var z = prompt("You see a stack of cash and a body. You could take the cash or check the body.");
+    //  } else {
+    //     alert("I cant read that");
+    //     var x = prompt("You walk to the entrance of a small abandoned house. There are 2 rooms, west and east.");
+    //   };
+    // }
+    //
+    //   if (y == "knife") {
+    //   alert("Stab the killer and leave the house");
+    // } else if (y == "gun") {
+    //   alert("You get the gun but you miss all your shots. A pain hits your stomach and you start bleeding...You die! ");
+    // } else {
+    //   alert("I cant read that");
+    //   var y = prompt("A killer is in the room! To your right there is a knife and to your left is a gun.");
+    // };
+    //
+    // if (z == "cash") {
+    //   alert("You get the cash and you start walking through the hallway...");
+    //   alert("A figure jumps at you and you die ");
+    // } else if (z == "body") {
+    //   alert("You check the body and you find out that theres a killer in the house....");
+    //   alert("The killer jumps you and stabs you. ");
+    // } else {
+    //   alert("I cant read that");
+    //   var z = prompt("You see a stack of cash and a body. You could take the cash or check the body.");
+    // };
+    house();
+    </script>
+  </body>
+</html>

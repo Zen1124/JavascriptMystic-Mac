@@ -1,0 +1,20 @@
+<html>
+  <body>
+    <script>
+      function ask() {
+        var choice = prompt("Do you like mario or luigi?");
+
+        if (choice == "mario") {
+          alert("Here is a red hat ... congratulations!")
+        } else if (choice == "luigi") {
+          alert("Here is a green pair of shoes");
+        } else {
+          alert("Thats not a valid choice!");
+          ask()
+        }
+      }
+      ask()
+
+    </script>
+  </body>
+</html>

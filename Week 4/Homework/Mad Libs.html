@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Mad Libs</title>
+  </head>
+  <body>
+    <input id="noun1" placeholder="Noun"></br></br>
+    <input id="noun2" placeholder="Any Noun but a name"></br></br>
+    <input id="noun3" placeholder="Noun"></br></br>
+    <input id="weapon1" placeholder="Weapon"></br></br>
+    <input id="adjective1" placeholder="Adjective"></br></br>
+    <input id="pet1" placeholder="Name of a Pet"></br></br>
+    <input id="verb1" placeholder="Verb"></br></br>
+    <input id="noun4" placeholder="Noun"></br></br>
+    <button onclick="madlibs();">Mad Libs</button>
+    <p id="story"></p>
+
+
+    <script>
+      var noun1 = document.getElementById("noun1");
+      var noun2 = document.getElementById("noun2");
+      var noun3 = document.getElementById("noun3");
+      var weapon1 = document.getElementById("weapon1");
+
+      function madlibs() {
+        document.getElementById("story").textContent = noun1.value + " took all the cookies in "
+        + noun2.value + ". " + noun3.value + " was " + noun1.value + "'s mom, she grounded " +
+        noun1.value + " and gave him a beating with (a) " + weapon1.value + ". "
+        + "This made him " + adjective1.value + " so "
+        + noun1.value + " robbed a pet store and took a pet " +
+         pet1.value + ". " + "Then " + noun1.value + " was " + verb1.value + " by " +
+         noun4.value;
+        console.log(noun1.value, noun2.value);
+      }
+
+    </script>
+  </body>
+</html>

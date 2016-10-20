@@ -1,0 +1,34 @@
+<html>
+  <body>
+    <script>
+      function ask(a) {
+        return prompt(a);
+
+      }
+
+      var x = ask("You stumble across a egg will you break it?");
+
+      if (x == "yes") {
+        var y = ask("You break it and a alien comes out, do you want to kill it or befriend it?");
+      } else if (x == "no") {
+        alert("You walk away and a meteor hits you only.");
+      } else {
+        alert("I cant read that");
+        var x = ask("You stumble across a egg will you break it?");
+      }
+
+      if (y == "kill it", "kill") {
+        alert("You kill the alien and you earn the magical pencil");
+      } else if (y == "befriend it", "befriend") {
+        alert("You befriend him and he gives you a magic pen");
+        alert("You use the pen and everything turns black...");
+        alert("...");
+        alert("...");
+        alert("You're dead");
+      } else {
+        alert("I cant read that");
+        var y = ask("You break it and a alien comes out, do you want to kill it or befriend it?");
+      }
+    </script>
+  </body>
+</html>
