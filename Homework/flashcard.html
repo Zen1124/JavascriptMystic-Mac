@@ -18,7 +18,7 @@
   <body>
     <div id="card"><p id="question"></p></div>
     <input type="text" id="answer"/>
-    <button onclick="answer();">Answer</button>
+    <button id="button" onclick="answer();">Answer</button>
 
     <script>
       var question = document.getElementById('question');
@@ -26,6 +26,31 @@
       var answer;
       var score = 0;
       var test = test + 1;
+      var answer;
+
+      function generateRandomShell() {
+            return Math.floor(100 * Math.random());
+
+          }
+      var sum;
+
+      function answer2() {
+        if (answer.value == "Quito") {
+            answer.value = "";
+            var addend = generateRandomShell();
+            var addend2 = generateRandomShell();
+            question.textContent = "What is " + addend + " + " + addend2;
+            var sum = addend + addend2;
+         if (answer.value == sum) {
+              question.textContent = "Correct!";
+              score++;
+          } else {
+            question.textContent = "Nope, looks like you got it wrong :("
+            console.log("Test");
+          }
+        }
+
+      }
 
       function answer() {
         var answer = document.getElementById('answer');
@@ -33,11 +58,16 @@
           question.textContent = "Correct!";
           score++;
           console.log(score);
+          answer2();
         } else {
           question.textContent = "Nope Seems Like You got It Wrong :(";
           score++;
+          answer2();
         }
       }
+
+
+
     </script>
   </body>
 </html>

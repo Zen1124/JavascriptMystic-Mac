@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ting</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      function go() {
+        // 1. grab the name
+        var input = document.getElementById('input');
+        //2. stuff it in the paragraph
+        var paragraph = document.getElementById('paragraph');
+        paragraph.textContent = "My name is " + input.value;
+      }
+    </script>
+
+
+    <button type="button" name="button" onclick="go();">Button Button</button>
+    <input id ="input" placeholder="name"></input>
+    <i><p id="paragraph"></p></i>
+  </body>
+</html>
