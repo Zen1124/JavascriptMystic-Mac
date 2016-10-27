@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="crafty-min.js"></script>
+    <title>Platformer</title>
+  </head>
+  <body>
+    <script>
+      function start() {
+        Crafty.init();
+        var player = Crafty.e("Player, 2D, DOM, Color, Twoway, Gravity, Solid, Collision");
+        player.attr({x:9, y:550, w:55, h:55});
+        player.gravity("Platform", "Platform2");
+        player.twoway();
+        player.color("blue");
+        var platform = Crafty.e("Platform, 2D, DOM, Color");
+        platform.attr({x:-10, y:600, w:150, h:16});
+        platform.color("green");
+        var platform2 = Crafty.e("Platform2, 2D, DOM, Color");
+        platform2.attr({x:100, y:530, w:150, h:16});
+        platform2.color("green");
+      }
+
+      window.onload = start;
+    </script>
+  </body>
+</html>

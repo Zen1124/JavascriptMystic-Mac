@@ -18,26 +18,90 @@
   <body>
     <div id="card"><p id="question"></p></div>
     <input type="text" id="answer"/>
-    <button onclick="answer();">Answer</button>
+    <button id="button" onclick="answer();">Answer</button>
 
     <script>
       var question = document.getElementById('question');
       question.textContent = "What is the captial of Ecuador?";
       var answer;
-      var score;
-      var test = test + 1;
+      var score = 0;
+      var answer;
+      function generateRandomShell() {
+            return Math.floor(100 * Math.random());
+
+          }
+      var sum;
+      var product;
+
+      function question2() {
+            console.log("IT WORKS M8");
+            var addend = generateRandomShell();
+            var addend2 = generateRandomShell();
+            question.textContent = "What is " + addend + " + " + addend2;
+            var sum = addend + addend2;
+            var button = document.getElementById('button');
+            button.setAttribute( "onclick", "javascript: answer2();" );
+        }
+
+
+        function answer2() {
+            answer = document.getElementById('answer');
+
+            if (answer.value == sum) {
+                question.textContent = "Correct!";
+                score++;
+                question3();
+            } else {
+                question.textContent = "WRONG";
+                question3();
+            }
+          }
+
+      function question3() {
+          var multiple1 = generateRandomShell();
+          var multiple2 = generateRandomShell();
+          var product = multiple1 * multiple2;
+          question.textContent = "What is " + multiple1 + " x " + multiple2;
+          button = document.getElementById('button');
+          button.setAttribute( "onclick" , "javascript: answer3();" );
+      }
+
+      function answer3() {
+          answer = document.getElementById('answer');
+          if (answer.value == product) {
+            score++;
+            question.textContent = "Your score was " + score;
+          } else {
+            question.textContent = "Your score was " + score;
+          }
+      }
+
+
+
+      var button;
+      var addend;
+      var addend2;
+      var sum;
+
+
+
+
 
       function answer() {
-        var answer = document.getElementById('answer');
+        answer = document.getElementById('answer');
         if (answer.value == "Quito") {
           question.textContent = "Correct!";
           score++;
           console.log(score);
+          question2();
         } else {
           question.textContent = "Nope Seems Like You got It Wrong :(";
-          score++;
+          question2();
         }
       }
+
+
+
     </script>
   </body>
 </html>
