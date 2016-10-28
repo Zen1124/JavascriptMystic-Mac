@@ -11,16 +11,41 @@
         Crafty.init();
         var player = Crafty.e("Player, 2D, DOM, Color, Twoway, Gravity, Solid, Collision");
         player.attr({x:9, y:550, w:55, h:55});
-        player.gravity("Platform", "Platform2");
+        player.gravity("Platform");
         player.twoway();
         player.color("blue");
-        var platform = Crafty.e("Platform, 2D, DOM, Color");
+
+        var platform = Crafty.e("Platform, 2D, DOM, Color, Solid");
         platform.attr({x:-10, y:600, w:150, h:16});
         platform.color("green");
-        var platform2 = Crafty.e("Platform2, 2D, DOM, Color");
-        platform2.attr({x:100, y:530, w:150, h:16});
+
+        var platform2 = Crafty.e("Platform, 2D, DOM, Color, Solid, Collision");
+        platform2.attr({x:150, y:530, w:150, h:16});
         platform2.color("green");
+
+        var platform3 = Crafty.e("Platform, 2D, DOM, Color");
+        platform3.attr({x:370, y:450, w:150, h:16});
+        platform3.color("green");
+
+        var platform4 = Crafty.e("Platform, 2D, DOM, Color");
+        platform4.attr({x:570, y:350, w:120, h:16});
+        platform4.color("green");
+
+        var platform5 = Crafty.e("Platform, 2D, DOM, Color");
+        platform5.attr({x:370, y:200, w:150, h:16});
+        platform5.color("green");
+
+        var goal = Crafty.e("Goal, 2D, DOM, Color, Solid, Collision");
+        goal.attr({x:200, y:230, w:40, h:40});
+        goal.onHit("Player", hit);
+        goal.color("red");
       }
+
+      function hit() {
+        alert("YOU WINNED");
+        return
+      }
+
 
       window.onload = start;
     </script>
