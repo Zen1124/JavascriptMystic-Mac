@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Grass Tycoon</title>
+    <script src="crafty-min.js"></script>
+    <style>
+    #vid {
+      position: fixed;
+      top: 50%; left: 50%;
+      z-index: 1;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+
+    }
+
+    #vid2 {
+      position: fixed;
+      top: 50%; left: 50%;
+      z-index: 1;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+
+    }
+
+    #cr-stage {
+      z-index: 2;
+    }
+    </style>
+  </head>
+  <body>
+    <p id = "grass"></p>
+    <p id = "money"></p>
+    <video id="vid" width="1000" height="700" autoplay loop>
+      <source src="start.mp4" type="video/mp4">
+    </video>
+
+    <video id="vid2" width="1000" height="700" autoplay loop muted>
+      <source src="grass.mp4" type="video/mp4">
+    </video>
+
+    <script>
+      var vid2;
+      function start() {
+        vid2 = document.getElementById('vid2');
+        vid2.style.display = "none";
+        Crafty.init();
+        var start = Crafty.e("Start, 2D, DOM, Image, Mouse");
+        start.attr({x:200, y:40, w:0, h:0});
+        start.image("start.png");
+        start.bind("Click", function() {
+          Crafty.defineScene("start", createStart);
+          Crafty.defineScene("choose", createChoose);
+          Crafty.enterScene("choose");
+        })
+        Crafty.audio.add("Start", "start.mp3");
+        Crafty.audio.play("Start");
+      }
+
+      var image;
+      var money = 0;
+      var speed = 0;
+
+      function createChoose() {
+        Crafty.audio.stop();
+        var vid = document.getElementById("vid");
+        vid.style.display = "none";
+        Crafty.background("url(grass.jpg) no-repeat");
+
+
+        var first = Crafty.e("First, 2D, DOM, Image, Mouse");
+        first.attr({x:0, y: 200, w:0, h:0});
+        first.image("collect.png");
+        first.bind("Click", function() {
+          image = "collect2.png";
+          Crafty.enterScene("start");
+          space = 400;
+          speed = 100;
+        });
+
+        var second = Crafty.e("First, 2D, DOM, Image, Mouse");
+        second.attr({x:700, y:200, w:0, h:0});
+        second.image("sanik2.png");
+        second.bind("Click", function() {
+          image = "sanik.png";
+          Crafty.enterScene("start");
+          space = 200;
+          speed = 1000;
+        });
+
+        var third = Crafty.e("First, 2D, DOM, Image, Mouse");
+        third.attr({x:1200, y:200, w:0, h:0});
+        third.image("patrick.png");
+        third.bind("Click", function() {
+          image = "patrick2.png";
+          Crafty.enterScene("start");
+          space = 100;
+          money = money + 200;
+          speed = 400
+
+        });
+
+        var text = Crafty.e('2D, DOM, Image');
+        text.image("text.png");
+        text.attr({x:500, y:50});
+
+
+      }
+
+      function createStart() {
+        Crafty.init(1000,800);
+        Crafty.background("yellow");
+        var columns = 100;
+        var rows = 80;
+        var tileWidth = 10;
+        var tileHeight = 10;
+        var column;
+        var row;
+        for (column = 0; column < columns; column++) {
+          for (row = 0; row < rows; row++) {
+            var tileX = column * tileWidth;
+            var tileY = row * tileHeight;
+            if (Math.random() < 0.3) {
+              var grass = Crafty.e("2D, DOM, Color, Solid");
+              grass.attr({x: tileX, y: tileY, w: tileWidth, h: tileHeight});
+              grass.color("#006400");
+            }
+          }
+        }
+        player = Crafty.e("Player, 2D, DOM, Image, Fourway, Collision");
+        player.attr({x: 0, y: 0, w: 0, h: 0});
+        player.image(image);
+        player.fourway(speed);
+        player.onHit("Solid", hit);
+
+
+
+
+      }
+      var grass = 0;
+      var space = 0;
+      var countingMoney = 0;
+      var grassCounter
+      function hit(args) {
+        var other = args[0].obj
+        other.destroy();
+        grass++;
+        grassCounter = document.getElementById("grass");
+        grassCounter.textContent = "Grass Counter: " + grass;
+        console.log(grass);
+
+        if (grass >= space) {
+          Crafty.defineScene("Level 2", level2);
+          Crafty.enterScene("Level 2");
+
+        }
+      }
+
+      function level2() {
+        var text3 = Crafty.e("DOM, 2D, Image");
+        text3.image("text3.png");
+        text3.attr({x:100, y:50})
+
+        window.setTimeout(function() {
+          var text2 = Crafty.e("DOM, 2D, Image");
+          text2.image("text2.png");
+          text2.attr({x:100, y:200})
+
+          var button = Crafty.e("DOM, 2D, Image, Mouse");
+          button.image("button.png");
+          button.attr({x:100, y:500});
+          button.bind("Click", function() {
+            Crafty.defineScene("Money", createMoney);
+            Crafty.enterScene("Money");
+          });
+        }, 2000
+      )
+
+      }
+      var test = 0;
+      function createMoney() {
+        Crafty.init();
+        Crafty.audio.add("Money", "ka-ching.mp3");
+        Crafty.audio.play("Money");
+        Crafty.background("url(giphy.gif) center  no-repeat")
+        money = money + grass / 2;
+        for (var nothing = 0; nothing < money; nothing++) {
+          countingMoney++;
+        }
+        var moneyCounter = document.getElementById('money');
+        moneyCounter.textContent = "Money Counter: " + countingMoney;
+        grass = 0;
+        grassCounter.textContent = "Grass Counter: " + grass;
+
+        var next = Crafty.e("DOM, 2D, Image, Mouse");
+        next.attr({x:1100, y:500});
+        next.image("next.png");
+        next.bind("Click", function() {
+          Crafty.enterScene("start");
+        })
+
+        var upgradeText = Crafty.e("DOM, 2D, Image");
+        upgradeText.attr({x:890, y: -50});
+        upgradeText.image("100.png");
+
+        var upgrade = Crafty.e("DOM, 2D, Image, Mouse");
+        upgrade.attr({x:1100, y:300});
+        upgrade.image("upgrade.png");
+        upgrade.bind("Click", function() {
+          if (money < 100) {
+            alert("You can't afford that!");
+          } else {
+            space = space + 100;
+            money = money - 100;
+            moneyCounter.textContent = "Money Counter: " + money;
+          }
+        });
+
+        money = 300000;
+        moneyCounter.textContent = "Money Counter: " + money;
+
+
+        var win = Crafty.e("DOM, 2D, Image, Mouse");
+        win.image("win.png");
+        win.attr({x:100, y:300});
+        win.bind("Click", function() {
+          if (money >= 300000) {
+            console.log("it work");
+            Crafty.defineScene("win", createWin);
+            Crafty.enterScene("win");
+
+          } else {
+            alert("You don't have $300,000!")
+          }
+        });
+
+        var winText = Crafty.e("DOM, 2D, Image");
+        winText.image("winText.png");
+        winText.attr({x:-100, y:100});
+
+      }
+
+      function createWin() {
+        Crafty.background("none");
+        vid2.style.display = "block";
+        //Crafty.audio.add("Grass", "grass.mp3");
+        //Crafty.audio.play("Grass", -1);
+        //vid2.getAttribute("muted");
+        //vid2.setAttribute("muted", "false");
+        document.getElementById('vid2').addEventListener('loadedmetadata',
+        function() {
+          this.currentTime = 0;
+        }, false);
+
+        vid2.muted = false
+
+
+
+
+      }
+
+      window.onload = start;
+    </script>
+  </body>
+</html>
