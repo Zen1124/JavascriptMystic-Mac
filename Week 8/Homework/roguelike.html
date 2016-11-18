@@ -82,6 +82,13 @@
           space = 400;
           speed = 100;
         });
+        first.bind("MouseOver", function() {
+          Crafty.audio.add("Collector", "collector.mp3");
+          Crafty.audio.play("Collector");
+        });
+        first.bind("MouseOut", function() {
+          Crafty.audio.stop();
+        })
 
         var second = Crafty.e("First, 2D, DOM, Image, Mouse");
         second.attr({x:700, y:200, w:0, h:0});
@@ -92,6 +99,13 @@
           space = 200;
           speed = 1000;
         });
+        second.bind("MouseOver", function() {
+          Crafty.audio.add("Sanic", "sanic.mp3");
+          Crafty.audio.play("Sanic");
+        });
+        second.bind("MouseOut", function() {
+          Crafty.audio.stop();
+        })
 
         var third = Crafty.e("First, 2D, DOM, Image, Mouse");
         third.attr({x:1200, y:200, w:0, h:0});
@@ -101,9 +115,15 @@
           Crafty.enterScene("start");
           space = 100;
           money = money + 200;
-          speed = 400
-
+          speed = 400;
         });
+        third.bind("MouseOver", function() {
+          Crafty.audio.add("Patrick", "patrick.mp3");
+          Crafty.audio.play("Patrick");
+        });
+        third.bind("MouseOut", function() {
+          Crafty.audio.stop();
+        })
 
         var text = Crafty.e('2D, DOM, Image');
         text.image("text.png");
@@ -248,20 +268,7 @@
       function createWin() {
         Crafty.background("none");
         vid2.style.display = "block";
-        //Crafty.audio.add("Grass", "grass.mp3");
-        //Crafty.audio.play("Grass", -1);
-        //vid2.getAttribute("muted");
-        //vid2.setAttribute("muted", "false");
-        document.getElementById('vid2').addEventListener('loadedmetadata',
-        function() {
-          this.currentTime = 0;
-        }, false);
-
         vid2.muted = false
-
-
-
-
       }
 
       window.onload = start;
