@@ -162,6 +162,9 @@
 
 
       }
+
+
+      var special;
       var grass = 0;
       var space = 0;
       var countingMoney = 0;
@@ -173,12 +176,16 @@
         grassCounter = document.getElementById("grass");
         grassCounter.textContent = "Grass Counter: " + grass;
         console.log(grass);
-
+        special = Math.floor(20 * Math.random()) + 1;
         if (grass >= space) {
+          grass =  grass - (grass - space);
+          grassCounter.textContent = "Grass Counter: " + grass;
           Crafty.defineScene("Level 2", level2);
           Crafty.enterScene("Level 2");
-
+        } else if(special == 3) {
+          grass = grass + Math.floor((10-1) * Math.random()) + 1;
         }
+
       }
 
       function level2() {
@@ -241,9 +248,19 @@
           }
         });
 
+        if (money >= 1000) {
+          var vegan = Crafty.e("DOM, 2D, Image, Mouse");
+          vegan.image("vegan.png");
+          vegan.attr({x:400, y:-200});
+          vegan.bind("Click", function() {
+            image = "vegan.png";
+            vegan.destroy();
+          })
+        }
+
+
 
         moneyCounter.textContent = "Money Counter: " + money;
-
 
         var win = Crafty.e("DOM, 2D, Image, Mouse");
         win.image("win.png");
